@@ -21,7 +21,6 @@ class Surface
     7.times do |i|
       vertical_array_to_check << @board[@row_number+3-i][@column_number] if @board[@row_number+3-i] && @board[@row_number+3-i][@column_number]
     end
-    puts vertical_array_to_check.to_s
 
     top_left_to_bottom_right_array_to_check = []
     7.times do |i|
