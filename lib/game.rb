@@ -3,12 +3,12 @@ class Game
   def initialize
     # @board is going to be upside down, as if playing on the ceiling and the pieces are lighter than air...
     @board = [ 
-      [0,0,0,0,0,0],
-      [0,0,0,0,0,0],
-      [0,0,0,0,0,0],
-      [0,0,0,0,0,0],
-      [0,0,0,0,0,0],
-      [0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0],
     ]
   end
   def move(player_number, slot_number)
@@ -40,27 +40,32 @@ class Game
     @board.each do |row|
       result = self.check_single_array_for_winner(row)
       if result != false
-          puts "about to return a winner!"
-          return result 
+        puts "about to return a winner!"
+        return result 
       end
     end
     # Now we should check for vertical wins
     board_as_columns = [
-        [],[],[],[],[],[]
+      [],[],[],[],[],[]
     ] 
     # the first column is: [@board[0][0], @board[1][0], @board[2][0], etc.]
     @board.each_with_index do |row, row_number|
       6.times do |column_number|
-          board_as_columns[column_number] << @board[row_number][column_number]
+        board_as_columns[column_number] << @board[row_number][column_number]
       end
     end
     board_as_columns.each do |column|
-        result = self.check_single_array_for_winner(column)
-        if result != false
-            puts "about to return a vertical winner!"
-            return result
-        end
+      result = self.check_single_array_for_winner(column)
+      if result != false
+        puts "about to return a vertical winner!"
+        return result
+      end
     end
+
+    # now we have to check the diagnoal wins
+    #
+
+    # we checked every possible win so return false
     return false
   end
 

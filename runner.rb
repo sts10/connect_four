@@ -25,9 +25,14 @@ while true
   break if slot_choice.to_s == "q"
 
   test.move(player_number, slot_choice.to_i)
-  test.present_board
-
+  result = test.present_board
   total_number_of_moves = total_number_of_moves + 1
+  if result != false
+    puts "Player ##{result} has won!"
+    puts "Game over"
+    break
+  end
+
 end
 
 puts "Goodbye!"
