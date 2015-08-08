@@ -26,7 +26,7 @@ while true
     break if slot_choice.to_s == "q"
     my_game.move(player_number, slot_choice.to_i)
   else
-    juliet.move
+    my_game.move(2, juliet.choose_slot)
   end
 
   my_game.present_board
