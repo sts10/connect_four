@@ -9,7 +9,7 @@ class Game
   def initialize
     # @board is going to be upside down, as if playing on the ceiling and the pieces are lighter than air...
     @board = [ 
-      [1,0,0,0,0,0],
+      [0,0,0,0,0,0],
       [0,0,0,0,0,0],
       [0,0,0,0,0,0],
       [0,0,0,0,0,0],
@@ -42,6 +42,26 @@ class Game
 end
 
 test = Game.new
-test.move(2, 0)
+puts "OK, we're ready to play!" 
+puts "Here's the board!"
+test.present_board
 
-binding.pry
+total_number_of_moves = 0 
+slot_choice = 0
+
+while true
+  if total_number_of_moves.even?
+    player_number = 1
+  else
+    player_number = 2
+  end
+  puts "Where do you want to move Player ##{player_number}?"
+  slot_choice = gets.chomp
+  break if slot_choice.to_s == "q"
+
+  test.move(player_number, slot_choice.to_i)
+
+  total_number_of_moves = total_number_of_moves + 1
+end
+
+puts "Goodbye!"
