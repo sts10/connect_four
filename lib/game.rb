@@ -75,7 +75,6 @@ class Game
     # now we have to check the diagonal wins
     #
 
-    # we checked every possible win so return false
     return result
   end
 
