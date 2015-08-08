@@ -1,0 +1,5 @@
+# Connect Four
+
+A simple version of Connect Four written in Ruby for the command line. 
+
+When I'm working on this, I plan to livestream my work. You can watch here: http://www.watchpeoplecode.com/streamer/sts10
