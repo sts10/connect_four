@@ -46,11 +46,11 @@ class Game
     end
     # Now we should check for vertical wins
     board_as_columns = [
-      [],[],[],[],[],[]
+      [],[],[],[],[],[],[]
     ] 
     # the first column is: [@board[0][0], @board[1][0], @board[2][0], etc.]
     @board.each_with_index do |row, row_number|
-      6.times do |column_number|
+      7.times do |column_number|
         board_as_columns[column_number] << @board[row_number][column_number]
       end
     end
