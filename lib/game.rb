@@ -62,7 +62,7 @@ class Game
       end
     end
 
-    # now we have to check the diagnoal wins
+    # now we have to check the diagonal wins
     #
 
     # we checked every possible win so return false
