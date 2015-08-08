@@ -38,17 +38,10 @@ class Game
       print "\n"
       i = i - 1
     end
-    #@board.each do |row|
-      #row.each do |space|
-        #print space
-      #end
-      #print "\n"
-    #end
   end
 end
 
 test = Game.new
 test.move(2, 0)
-test.present_board
 
 binding.pry
