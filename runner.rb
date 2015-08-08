@@ -1,5 +1,6 @@
 require 'pry'
 require_relative 'lib/game.rb'
+require_relative 'lib/surface.rb'
 
 puts "Welcome to Connect Four!" 
 
