@@ -1,5 +1,5 @@
 class Game 
-  attr_accessor :board, :last_move_x, :last_move_y
+  attr_accessor :board, :last_row_number, :last_column_number
   def initialize
     # @board is going to be upside down, as if playing on the ceiling and the pieces are lighter than air...
     @board = [ 
@@ -10,17 +10,16 @@ class Game
       [0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0],
     ]
-    @last_move_x = false
-    @last_move_y = false
+    @last_row_number = false
+    @last_column_number = false
   end
   def move(player_number, slot_number)
     # first, find the first row in the column that is free
     @board.each_with_index do |row, row_number|
       if row[slot_number] == 0
         row[slot_number] = player_number
-        @last_move_x = slot_number
-        @last_move_y = row_number
-        self.check_for_winner
+        @last_row_number = row_number
+        @last_column_number = slot_number
         break
       end
     end
@@ -39,7 +38,7 @@ class Game
   end
 
   def check_for_winner
-    this_surface = Surface.new(@last_move_x, @last_move_y, @board)
+    this_surface = Surface.new(@last_row_number, @last_column_number, @board)
     result = this_surface.check_for_winner
     return result
   end

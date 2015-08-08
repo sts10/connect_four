@@ -1,37 +1,47 @@
 class Surface
   attr_reader :winner
-  def initialize(x, y, board)
-    @x = x
-    @y = y
+  def initialize(row_number, column_number, board)
+    @row_number = row_number
+    @column_number = column_number
     @board = board
     @winner = 0
   end
+  def to_s
+    "#{@row_number}, #{@column_number}"
+  end
   def check_for_winner
+    puts "checking the surface #{self.to_s} for winners..."
     # check horizonal
     horizontal_array_to_check = []
     7.times do |i|
-      horizontal_array_to_check << @board[@x+3-i][@y] if @board[@x+3] && @board[@x+3][@y]
+      horizontal_array_to_check << @board[@row_number][@column_number+3-i] if @board[@row_number] && @board[@row_number][@column_number+3-i]
     end
 
     vertical_array_to_check = []
     7.times do |i|
-      vertical_array_to_check << @board[@x][@y+3-i]
+      vertical_array_to_check << @board[@row_number+3-i][@column_number] if @board[@row_number+3] && @board[@row_number+3][@column_number]
     end
+    #binding.pry
+
+
+    puts "horizontal_array #{horizontal_array_to_check}"
+    puts "vertical array #{vertical_array_to_check}"
 
     top_left_to_bottom_right_array_to_check = []
     7.times do |i|
-      top_left_to_bottom_right_array_to_check << @board[@x+3-i][@y+3-i]
+      top_left_to_bottom_right_array_to_check << @board[@row_number+3-i][@column_number+3-i] if @board[@row_number+3-i] && @board[@row_number+3-i][@column_number+3-i]
     end
 
     top_right_to_bottom_left_array_to_check = []
     7.times do |i|
-      top_right_to_bottom_left_array_to_check << @board[@x-3+1][@y+3-i]
+      top_right_to_bottom_left_array_to_check << @board[@row_number-3+i][@column_number+3-i] if @board[@row_number-3+i] && @board[@row_number-3+i][@column_number+3-i]
     end
     
     all_possible_winners_from_this_move = [] 
-    all_possible_winners_from_this_move << [horizontal_array_to_check, vertical_array_to_check,top_left_to_bottom_right_array_to_check, top_right_to_bottom_left_array_to_check]
+    all_possible_winners_from_this_move = [horizontal_array_to_check, vertical_array_to_check,top_left_to_bottom_right_array_to_check, top_right_to_bottom_left_array_to_check]
 
     result = check_array_of_arrays_for_winner(all_possible_winners_from_this_move)
+    #binding.pry
     return result
   end
 
@@ -39,6 +49,8 @@ class Surface
     result = false # set this as an assumption before we check
 
     array.each do |row|
+      puts "about to check #{row} for winners"
+
       result = self.check_single_array_for_winner(row)
       if result != false
         puts "about to return a winner, thanks to the check_array_of_arrays_for_winner method!"
