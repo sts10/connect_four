@@ -24,9 +24,6 @@ class Surface
     #binding.pry
 
 
-    puts "horizontal_array #{horizontal_array_to_check}"
-    puts "vertical array #{vertical_array_to_check}"
-
     top_left_to_bottom_right_array_to_check = []
     7.times do |i|
       top_left_to_bottom_right_array_to_check << @board[@row_number+3-i][@column_number+3-i] if @board[@row_number+3-i] && @board[@row_number+3-i][@column_number+3-i]
@@ -49,7 +46,7 @@ class Surface
     result = false # set this as an assumption before we check
 
     array.each do |row|
-      puts "about to check #{row} for winners"
+      #puts "about to check #{row} for winners"
 
       result = self.check_single_array_for_winner(row)
       if result != false
