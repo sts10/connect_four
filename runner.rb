@@ -24,9 +24,14 @@ while true
     puts "Where do you want to move Player ##{player_number}?"
     slot_choice = gets.chomp
     break if slot_choice.to_s == "q"
-    my_game.move(player_number, slot_choice.to_i)
+    player_move = my_game.move(player_number, slot_choice.to_i)
+    if player_move == false
+      puts "invalid move"
+      next
+    end
   else
-    my_game.move(2, juliet.choose_slot)
+    juliet_move = my_game.move(2, juliet.choose_slot)
+    next if juliet == false
   end
 
   my_game.present_board
