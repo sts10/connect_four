@@ -15,6 +15,7 @@ class Game
   end
   def move(player_number, slot_number)
     # first, find the first row in the column that is free
+    return false if slot_number > 6
     success = false
     @board.each_with_index do |row, row_number|
       if row[slot_number] == 0

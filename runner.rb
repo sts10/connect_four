@@ -21,12 +21,12 @@ player_number = 1
 
 while true
   if total_number_of_moves.even?
-    puts "Where do you want to move Player ##{player_number}?"
+    puts "Where do you want to move, Player ##{player_number}?"
     slot_choice = gets.chomp
     break if slot_choice.to_s == "q"
     player_move = my_game.move(player_number, slot_choice.to_i)
     if player_move == false
-      puts "invalid move"
+      puts "Invalid move!"
       next
     end
   else
