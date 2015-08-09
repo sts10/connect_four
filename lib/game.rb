@@ -41,6 +41,16 @@ class Game
     end
   end
 
+  def make_copy_of_board
+    new_board = [ 
+      [],[],[],[],[],[]
+    ]
+    @board.each do |row|
+      new_board << row
+    end
+
+    new_board
+  end
   def board_as_columns
     board_as_columns = [
       [],[],[],[],[],[],[]

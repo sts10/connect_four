@@ -30,8 +30,11 @@ while true
       next
     end
   else
-    juliet_move = my_game.move(2, juliet.choose_slot)
-    next if juliet == false
+    chosen_slot = juliet.choose_slot
+    juliet_move = my_game.move(2, chosen_slot)
+    puts "Juliet is about to try to move to #{chosen_slot}, which #{juliet_move}"
+    puts "Actual @board is #{my_game.board}"
+    next if juliet_move == false
   end
 
   my_game.present_board

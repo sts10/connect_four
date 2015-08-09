@@ -11,11 +11,20 @@ class Surface
   end
 
   def check_for_consec(num_consec, mark=0)
+    board_tc = [ 
+      [],[],[],[],[],[]
+    ]
+    @board.each do |row|
+      board_tc << row
+    end
+
     if mark == 0 
-      board_tc = @board
+      #board_tc = @board.dup
     else
-      board_tc = @board
+      #board_tc = @board.dup
       board_tc[@row_number][@column_number] = mark
+      puts "@board is #{@board}"
+      puts "board_tc, aft4er putting in the mark, is #{board_tc}"
     end
 
     num_to_check = num_consec - 1
@@ -58,6 +67,7 @@ class Surface
 
     result = check_array_of_arrays_for_winner(all_possible_winners_from_this_move, num_consec)
     #binding.pry
+
     return result
   end
 
