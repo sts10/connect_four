@@ -22,7 +22,7 @@ class Surface
     7.times do |i|
       horizontal_array_to_check << @board[@row_number][@column_number+num_to_check-i] if @board[@row_number] && @board[@row_number][@column_number+num_to_check-i]
     end
-    if num_consec == 3
+    if num_consec == 4
       puts "here's the horizontal array to check: #{horizontal_array_to_check}"
     end
 
