@@ -41,6 +41,19 @@ class Game
     end
   end
 
+  def board_as_columns
+    board_as_columns = [
+      [],[],[],[],[],[],[]
+    ] 
+    # the first column is: [@board[0][0], @board[1][0], @board[2][0], etc.]
+    @board.each do |row|
+      board_as_columns.each_with_index do |column, column_number|
+        column << row[column_number]
+      end
+    end
+    board_as_columns
+  end
+
   def check_for_winner
     this_surface = Surface.new(@last_row_number, @last_column_number, @board)
     result = this_surface.check_for_winner
