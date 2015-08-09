@@ -10,10 +10,6 @@ class Surface
     "#{@row_number}, #{@column_number}"
   end
 
-  def check_for_winner
-    self.check_for_consec(4)
-  end
-
   def check_for_consec(num_consec)
     num_to_check = num_consec - 1
     puts "checking the surface #{self.to_s} for #{num_consec} consecutive pieces..."

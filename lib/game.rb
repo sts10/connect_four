@@ -56,7 +56,7 @@ class Game
 
   def check_for_winner
     this_surface = Surface.new(@last_row_number, @last_column_number, @board)
-    result = this_surface.check_for_winner
+    result = this_surface.check_for_consec(4)
     return result
   end
 
