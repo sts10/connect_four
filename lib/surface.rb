@@ -75,10 +75,15 @@ class Surface
         consec_twos = 0
         consec_ones = 0
       end
+      if consec_ones == num_consec && consec_twos == num_consec
+        puts "both players have #{num_consec} pieces consecutively at #{self.to_s}"
+        return 3
+      end
 
+     
       if consec_ones == num_consec
         puts "P1 wins!"
-        return 1
+      return 1
       end 
       if consec_twos == num_consec
         puts "P2 wins!"
