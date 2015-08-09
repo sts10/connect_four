@@ -20,27 +20,32 @@ class Surface
     # check horizonal
     horizontal_array_to_check = []
     7.times do |i|
-      horizontal_array_to_check << @board[@row_number][@column_number+num_to_check-i] if @board[@row_number] && @board[@row_number][@column_number+num_to_check-i] && @column_number+num_to_check-i >= 0
+      if @board[@row_number] && @board[@row_number][@column_number+num_to_check-i] && @column_number+num_to_check-i >= 0
+        horizontal_array_to_check << @board[@row_number][@column_number+num_to_check-i] 
+      end
     end
     puts "here's the horizontal array to check: #{horizontal_array_to_check}"
 
     vertical_array_to_check = []
     7.times do |i|
       if @board[@row_number+num_to_check-i] && @board[@row_number+num_to_check-i][@column_number] && @row_number+num_to_check-i >= 0
-
-        puts "about to add #{@row_number+num_to_check-i} , #{@column_number} to vertical array to check, which is #{vertical_array_to_check}"
+        #puts "about to add #{@row_number+num_to_check-i} , #{@column_number} to vertical array to check, which is #{vertical_array_to_check}"
         vertical_array_to_check << @board[@row_number+num_to_check-i][@column_number] 
       end
     end
 
     top_left_to_bottom_right_array_to_check = []
     7.times do |i|
-      top_left_to_bottom_right_array_to_check << @board[@row_number+num_to_check-i][@column_number+num_to_check-i] if @board[@row_number+num_to_check-i] && @board[@row_number+num_to_check-i][@column_number+num_to_check-i] && @column_number+num_to_check-i >= 0
+      if @board[@row_number+num_to_check-i] && @board[@row_number+num_to_check-i][@column_number+num_to_check-i] && @column_number+num_to_check-i >= 0 && @row_number+num_to_check-i >= 0
+        top_left_to_bottom_right_array_to_check << @board[@row_number+num_to_check-i][@column_number+num_to_check-i] 
+      end
     end
 
     top_right_to_bottom_left_array_to_check = []
     7.times do |i|
-      top_right_to_bottom_left_array_to_check << @board[@row_number-num_to_check+i][@column_number+num_to_check-i] if @board[@row_number-num_to_check+i] && @board[@row_number-num_to_check+i][@column_number+num_to_check-i] && @column_number+num_to_check-i >= 0
+      if @board[@row_number-num_to_check+i] && @board[@row_number-num_to_check+i][@column_number+num_to_check-i] && @column_number+num_to_check-i >= 0 && @row_number-num_to_check+i >= 0
+        top_right_to_bottom_left_array_to_check << @board[@row_number-num_to_check+i][@column_number+num_to_check-i] 
+      end
     end
     
     all_possible_winners_from_this_move = [] 
