@@ -31,15 +31,19 @@ class Robot
       this_surface = Surface.new(row_number, column_number, @board)
       if this_surface.check_for_consec(3) == 2
         slot_choice = column_number
-      end
-      if this_surface.check_for_consec(3) == 1
+        puts "non randomly assigned slot choice cuz I know where I can win"
+        break
+      elsif this_surface.check_for_consec(3) == 1
         slot_choice = column_number
+        puts "non randomly assigned slot choice cuz I know where I need to block the human"
+        break
       end
     end
     # if none, then scan all possible moves for this_surface.check_for_consec(3) == 1 to find needed blocks
     if slot_choice
       return slot_choice
     else
+      puts "just going to choose randomly"
       return rand(7)
     end
   end

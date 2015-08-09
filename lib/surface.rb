@@ -16,11 +16,14 @@ class Surface
 
   def check_for_consec(num_consec)
     num_to_check = num_consec - 1
-    puts "checking the surface #{self.to_s} for winners..."
+    puts "checking the surface #{self.to_s} for #{num_consec} consecutive pieces..."
     # check horizonal
     horizontal_array_to_check = []
     7.times do |i|
       horizontal_array_to_check << @board[@row_number][@column_number+num_to_check-i] if @board[@row_number] && @board[@row_number][@column_number+num_to_check-i]
+    end
+    if num_consec == 3
+      puts "here's the horizontal array to check: #{horizontal_array_to_check}"
     end
 
     vertical_array_to_check = []
@@ -54,7 +57,7 @@ class Surface
 
       result = self.check_single_array_for_winner(row, num_consec)
       if result != false
-        puts "about to return a winner, thanks to the check_array_of_arrays_for_winner method!"
+        #puts "about to return a winner, thanks to the check_array_of_arrays_for_winner method!"
         break
       end
     end
@@ -82,11 +85,9 @@ class Surface
 
      
       if consec_ones == num_consec
-        puts "P1 wins!"
-      return 1
+        return 1
       end 
       if consec_twos == num_consec
-        puts "P2 wins!"
         return 2
       end
     end
