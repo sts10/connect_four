@@ -29,7 +29,7 @@ class Robot
     # poss moves = [[elevations[0], 0], [elevations[1], 1], etc.]
     elevations.each_with_index do |row_number, column_number|
       this_surface = Surface.new(row_number, column_number, @board)
-      urgent = this_surface.check_for_consec(3)
+      urgent = this_surface.check_for_consec(4, @number_to_use)
       if urgent == 2
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I can win"
