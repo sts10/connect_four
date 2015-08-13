@@ -14,8 +14,8 @@ class Surface
     board_tc = [ 
       [],[],[],[],[],[]
     ]
-    @board.each do |row|
-      board_tc << row
+    @board.each_with_index do |row, row_number|
+      board_tc[row_number] = row.dup
     end
 
     if mark == 0 
