@@ -1,7 +1,9 @@
 require 'pry'
+require 'twitter'
 require_relative 'lib/game.rb'
 require_relative 'lib/surface.rb'
 require_relative 'lib/robot.rb'
+require_relative 'secrets.rb'
 
 puts "Welcome to Connect Four!" 
 

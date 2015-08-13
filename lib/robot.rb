@@ -1,9 +1,31 @@
+
+
 class Robot
   def initialize(name, game)
     @name = name
     @game = game
     @board = game.board
     @number_to_use = 2
+  end
+
+
+  def listen_for_board
+    TWITTER_STREAMING.user do |object|
+      case object
+      when Twitter::Tweet
+        puts "It's a tweet from #{object.user.screen_name} that says: " + object.text
+
+        if object.text.include?("@schlinkbot") && object.text.downcase.include?("play?")
+          text_to_tweet = "@#{object.user.screen_name} hi! Yes, working on that..."
+
+          TWITTER_REST.update(text_to_tweet, in_reply_to_status_id: object.id)
+        end
+      when Twitter::Streaming::Event
+        puts "It's a Streaming::Event! Not really sure what this means!"
+      when Twitter::Streaming::StallWarning
+        puts "Falling behind!"
+      end
+    end
   end
 
   def make_elevations
