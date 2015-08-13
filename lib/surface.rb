@@ -18,14 +18,10 @@ class Surface
       board_tc[row_number] = row.dup
     end
 
-    if mark == 0 
-      #board_tc = @board.dup
-    else
-      #board_tc = @board.dup
+    if mark != 0 # means we're checking a mark
       board_tc[@row_number][@column_number] = mark
       puts "@board is #{@board}"
       puts "board_tc, aft4er putting in the mark, is #{board_tc}"
-      #binding.pry
     end
 
     num_to_check = num_consec - 1

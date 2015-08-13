@@ -37,8 +37,7 @@ class Robot
 
     elevations.each_with_index do |row_number, column_number|
       this_surface = Surface.new(row_number, column_number, @board)
-      urgent = this_surface.check_for_consec(4, @number_to_use)
-      if urgent == 2
+      if this_surface.check_for_consec(4, @number_to_use) == @number_to_use
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I can win"
         break
@@ -48,8 +47,6 @@ class Robot
         break
       end
     end
-
-
 
     # if none, then scan all possible moves for this_surface.check_for_consec(3) == 1 to find needed blocks
     if slot_choice
