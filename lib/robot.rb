@@ -42,7 +42,7 @@ class Robot
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I can win"
         break
-      elsif urgent == 1
+      elsif this_surface.check_for_consec(4, 1) == 1
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I need to block the human"
         break

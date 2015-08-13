@@ -25,6 +25,7 @@ class Surface
       board_tc[@row_number][@column_number] = mark
       puts "@board is #{@board}"
       puts "board_tc, aft4er putting in the mark, is #{board_tc}"
+      #binding.pry
     end
 
     num_to_check = num_consec - 1
