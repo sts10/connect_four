@@ -31,11 +31,21 @@ while true
     puts "Kitty wins"
     break
   end
-  levin.move
+  # sleep random amount
+  #
+  choosen_slot = levin.choose_slot
+  levin_move = my_game.move(2, chosen_slot)
+  if levin_move == false
+    next # this won't work for levin's bad moves...
+  end
+  levin.tweet_board(my_game)
+
   winner = my_game.check_for_winner
-  if winner
-    puts "Levin wins"
+  if winner 
+    puts "levin wins"
     break
   end
+
+  # sleep random amount
 end
 
