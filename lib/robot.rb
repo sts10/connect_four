@@ -18,7 +18,7 @@ class Robot
         if object.text.include?("@schlinkbot") && object.text.downcase.include?("play?")
           text_to_tweet = "@#{object.user.screen_name} hi! Yes, working on that..."
 
-          TWITTER_REST.update(text_to_tweet, in_reply_to_status_id: object.id)
+          LEVIN_REST.update(text_to_tweet, in_reply_to_status_id: object.id)
         end
       when Twitter::Streaming::Event
         puts "It's a Streaming::Event! Not really sure what this means!"
