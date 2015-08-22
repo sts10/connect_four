@@ -1,8 +1,9 @@
 
 
 class Robot
-  def initialize(name, game)
+  def initialize(name, rest_client, game)
     @name = name
+    @rest_client = rest_client
     @game = game
     @board = game.board
     @number_to_use = 2
@@ -15,10 +16,10 @@ class Robot
       when Twitter::Tweet
         puts "It's a tweet from #{object.user.screen_name} that says: " + object.text
 
-        if object.text.include?("@schlinkbot") && object.text.downcase.include?("play?")
+        if object.text.include?("@#{@name}") && object.text.downcase.include?("play?")
           text_to_tweet = "@#{object.user.screen_name} hi! Yes, working on that..."
 
-          LEVIN_REST.update(text_to_tweet, in_reply_to_status_id: object.id)
+          @rest_client.update(text_to_tweet, in_reply_to_status_id: object.id)
         end
       when Twitter::Streaming::Event
         puts "It's a Streaming::Event! Not really sure what this means!"
