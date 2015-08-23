@@ -79,4 +79,28 @@ class Robot
       return rand(7)
     end
   end
+
+  def tweet(text_to_tweet)
+    @rest_client.update(text_to_tweet)
+  end
+
+  def tweet_board(game)
+    text_to_tweet = "\n\n"
+    game.board.each do |row|
+      text_to_tweet = text_to_tweet + "|"
+      row.each do |space|
+        if space == 0
+          text_to_tweet = text_to_tweet + Rumoji.decode(":white_circle:")
+        elsif space == 1
+          text_to_tweet = text_to_tweet + Rumoji.decode(":red_circle:")
+        else
+          text_to_tweet = text_to_tweet + Rumoji.decode(":large_blue_circle:")
+        end
+      end
+      text_to_tweet = text_to_tweet + "|\n"
+    end
+
+    self.tweet(text_to_tweet)
+  end
+
 end

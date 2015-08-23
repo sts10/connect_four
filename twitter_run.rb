@@ -1,5 +1,6 @@
 require 'pry'
 require 'twitter'
+require 'rumoji'
 require_relative 'lib/game.rb'
 require_relative 'lib/surface.rb'
 require_relative 'lib/robot.rb'
@@ -14,15 +15,16 @@ my_game = Game.new
 kitty = Robot.new("kitty_1878", KITTY_REST, my_game)
 levin = Robot.new("schlinkbot", LEVIN_REST, my_game)
 
+
 puts "OK, we're ready to play!" 
 puts "Here's the board!"
 my_game.present_board
 
 while true
-  choosen_slot = kitty.choose_slot
-  kitty_move = my_game.move(2, chosen_slot)
-  if kitty_move == false
-    next # this won't work for levin's bad moves...
+  chosen_slot = kitty.choose_slot
+  kitty_move = my_game.move(1, chosen_slot)
+  while kitty_move == false
+    kitty_move = my_game.move(1, chosen_slot)
   end
   kitty.tweet_board(my_game)
 
@@ -32,12 +34,13 @@ while true
     break
   end
   # sleep random amount
-  #
-  choosen_slot = levin.choose_slot
+  sleep 5
+  chosen_slot = levin.choose_slot
   levin_move = my_game.move(2, chosen_slot)
-  if levin_move == false
-    next # this won't work for levin's bad moves...
+  while levin_move == false
+    levin_move = my_game.move(2, chosen_slot)
   end
+
   levin.tweet_board(my_game)
 
   winner = my_game.check_for_winner
@@ -47,5 +50,6 @@ while true
   end
 
   # sleep random amount
+  sleep 5
 end
 
