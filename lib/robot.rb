@@ -59,6 +59,9 @@ class Robot
     # poss moves = [[elevations[0], 0], [elevations[1], 1], etc.]
 
     elevations.each_with_index do |row_number, column_number|
+      if column_number == 6 
+        next
+      end
       this_surface = Surface.new(row_number, column_number, @board)
       if this_surface.check_for_consec(4, @number_to_use) == @number_to_use
         slot_choice = column_number
