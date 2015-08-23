@@ -86,9 +86,10 @@ class Robot
 
   def tweet_board(game)
     text_to_tweet = "\n\n"
-    game.board.each do |row|
+    i = 5
+    6.times do 
       text_to_tweet = text_to_tweet + "|"
-      row.each do |space|
+      @board[i].each do |space|
         if space == 0
           text_to_tweet = text_to_tweet + Rumoji.decode(":white_circle:")
         elsif space == 1
@@ -98,8 +99,8 @@ class Robot
         end
       end
       text_to_tweet = text_to_tweet + "|\n"
+      i = i - 1
     end
-
     self.tweet(text_to_tweet)
   end
 
