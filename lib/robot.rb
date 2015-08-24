@@ -75,7 +75,6 @@ class Robot
       end
     end
 
-    # if none, then scan all possible moves for this_surface.check_for_consec(3) == 1 to find needed blocks
     if slot_choice
       return slot_choice
     else
