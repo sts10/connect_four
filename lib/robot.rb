@@ -1,9 +1,10 @@
 
 
 class Robot
-  def initialize(name, rest_client, game)
+  def initialize(name, rest_client, opponent, game)
     @name = name
     @rest_client = rest_client
+    @opponent = opponent
     @game = game
     @board = game.board
     @number_to_use = 2
@@ -83,12 +84,16 @@ class Robot
     end
   end
 
-  def tweet(text_to_tweet)
-    @rest_client.update(text_to_tweet)
+  def tweet(text_to_tweet, id_to_reply_to=0)
+    if id_to_reply_to == 0
+      @rest_client.update(text_to_tweet)
+    else
+      @rest_client.update(text_to_tweet, in_reply_to_status_id: id_to_reply_to)
+    end
   end
 
-  def tweet_board(game)
-    text_to_tweet = "\n\n"
+  def tweet_board(game, id_to_reply_to)
+    text_to_tweet = "@#{@opponent}\n\n"
     i = 5
     6.times do 
       text_to_tweet = text_to_tweet + "|"
@@ -104,7 +109,7 @@ class Robot
       text_to_tweet = text_to_tweet + "|\n"
       i = i - 1
     end
-    self.tweet(text_to_tweet)
+    self.tweet(text_to_tweet, id_to_reply_to)
   end
 
 end
