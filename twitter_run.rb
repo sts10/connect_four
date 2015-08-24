@@ -10,14 +10,14 @@ puts "Welcome to Connect Four!"
 
 
 my_game = Game.new
-kitty = Robot.new("kitty_1878", KITTY_REST, "schlinkbot", my_game)
-levin = Robot.new("schlinkbot", LEVIN_REST, "kitty_1878", my_game)
+kitty = Robot.new("kitty_1878", 1, KITTY_REST, "schlinkbot", my_game)
+levin = Robot.new("schlinkbot", 2, LEVIN_REST, "kitty_1878", my_game)
 
 
 puts "OK, we're ready to play!" 
 puts "Here's the board!"
 my_game.present_board
-first_tweet = ["(What! shall I be left alone-- without her?)", "Wait a minute", "I've long wanted ot ask you one thing", "Here"].sample
+first_tweet = ["(What! shall I be left alone-- without her?)", "Wait a minute", "I've long wanted to ask you one thing", "Here"].sample
 tweet_to_reply_to = levin.tweet("@kitty_1878 #{first_tweet}") 
 
 

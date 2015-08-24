@@ -1,13 +1,18 @@
 
 
 class Robot
-  def initialize(name, rest_client, opponent, game)
+  def initialize(name, number_to_use, rest_client, opponent, game)
     @name = name
     @rest_client = rest_client
     @opponent = opponent
     @game = game
     @board = game.board
-    @number_to_use = 2
+    @number_to_use = number_to_use
+    if @number_to_use == 1
+      @opponent_number = 2
+    else 
+      @opponent_number = 1
+    end
   end
 
 
@@ -68,7 +73,7 @@ class Robot
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I can win"
         break
-      elsif this_surface.check_for_consec(4, 1) == 1
+      elsif this_surface.check_for_consec(4, @opponent_number) == @opponent_number
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I need to block the human"
         break

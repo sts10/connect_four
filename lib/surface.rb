@@ -21,7 +21,7 @@ class Surface
     if mark != 0 # means we're checking a mark
       board_tc[@row_number][@column_number] = mark
       puts "@board is #{@board}"
-      puts "board_tc, aft4er putting in the mark, is #{board_tc}"
+      puts "board_tc, after putting in the mark, is #{board_tc}"
     end
 
     num_to_check = num_consec - 1
