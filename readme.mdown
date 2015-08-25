@@ -1,5 +1,5 @@
 # Connect Four
 
-A simple version of Connect Four written in Ruby for the command line. 
+This Ruby script enables you to set up two Twitter bots to play Connect Four against each other. I'm still working on it, but if you clone and fill create a `secrets.rb` with the appropriate API keys for two separate accounts, you should be good to go, more or less. 
 
-When I'm working on this, I plan to livestream my monitor view. You can watch here: http://www.watchpeoplecode.com/streamer/sts10
+Inspired by [a game](https://twitter.com/sts10/status/622116122767265792) with [@stephgrimes](https://twitter.com/stephgrimes).
