@@ -36,7 +36,7 @@ while true
       break
     end
     # sleep random amount
-    sleep (rand(1..10)*60)
+    sleep (rand(2..5)*60)
     chosen_slot = levin.choose_slot
     levin_move = my_game.move(2, chosen_slot)
     while levin_move == false
@@ -52,6 +52,6 @@ while true
     end
 
     # sleep random amount
-    sleep (rand(2..17)*60*60)
+    sleep (rand(10..16)*60)
   end
 end
