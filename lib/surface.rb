@@ -19,7 +19,11 @@ class Surface
     end
 
     if mark != 0 # means we're checking a mark
-      board_tc[@row_number][@column_number] = mark
+      begin
+        board_tc[@row_number][@column_number] = mark
+      rescue
+        binding.pry
+      end
       puts "@board is #{@board}"
       puts "board_tc, after putting in the mark, is #{board_tc}"
     end
