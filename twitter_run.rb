@@ -8,19 +8,19 @@ require_relative 'secrets.rb'
 
 puts "Welcome to Connect Four!" 
 
-
-my_game = Game.new
-kitty = Robot.new("kitty_1878", 1, KITTY_REST, "schlinkbot", my_game)
-levin = Robot.new("schlinkbot", 2, LEVIN_REST, "kitty_1878", my_game)
-
-
-puts "OK, we're ready to play!" 
-puts "Here's the board!"
-my_game.present_board
-first_tweet = ["(What! shall I be left alone-- without her?)", "Wait a minute", "I've long wanted to ask you one thing", "Here"].sample
-tweet_to_reply_to = levin.tweet("@kitty_1878 #{first_tweet}") 
-
 while true
+
+  my_game = Game.new
+  kitty = Robot.new("kitty_1878", 1, KITTY_REST, "schlinkbot", my_game)
+  levin = Robot.new("schlinkbot", 2, LEVIN_REST, "kitty_1878", my_game)
+
+
+  puts "OK, we're ready to play!" 
+  puts "Here's the board!"
+  my_game.present_board
+  first_tweet = ["(What! shall I be left alone-- without her?)", "Wait a minute", "I've long wanted to ask you one thing", "Here"].sample
+  tweet_to_reply_to = levin.tweet("@kitty_1878 #{first_tweet}") 
+
   while true
     chosen_slot = kitty.choose_slot
     kitty_move = my_game.move(1, chosen_slot)
