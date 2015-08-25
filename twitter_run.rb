@@ -52,6 +52,6 @@ while true
     end
 
     # sleep random amount
-    sleep (rand(10..16)*60)
+    sleep (rand(10..15)*60)
   end
 end
