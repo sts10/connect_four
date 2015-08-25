@@ -84,7 +84,16 @@ class Robot
       return slot_choice
     else
       puts "just going to choose randomly"
-      return rand(7)
+      valid_random_move = false
+      while valid_random_move == false
+        random_move = rand(7)
+        # if elevations something != 6
+        if elevations[random_move] != 6
+          valid_random_move = true
+        end
+      end
+
+      return random_move
     end
   end
 
