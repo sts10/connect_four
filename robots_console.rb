@@ -36,6 +36,7 @@ while true
 
     if my_game.board_full?
       puts "board full is true"
+      sleep 3
       break
     end
     # sleep random amount
@@ -57,6 +58,7 @@ while true
 
     if my_game.board_full?
       puts "board full is true"
+      sleep 3
       break
     end
     # sleep random amount
