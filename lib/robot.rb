@@ -73,10 +73,21 @@ class Robot
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I can win"
         break
-      elsif this_surface.check_for_consec(4, @opponent_number) == @opponent_number
-        slot_choice = column_number
-        puts "non randomly assigned slot choice cuz I know where I need to block the human"
-        break
+      end
+    end
+
+# If not spaces to win, look for spaces to block the opponent from winning
+    if slot_choice == false
+      elevations.each_with_index do |row_number, column_number|
+        if row_number == 6 # is this supposed to be row_unmber == 6 ? (used to be `if column_number == 6`
+          next
+        end
+        this_surface = Surface.new(row_number, column_number, @board)
+        if this_surface.check_for_consec(4, @opponent_number) == @opponent_number
+          slot_choice = column_number
+          puts "non randomly assigned slot choice cuz I know where I need to block the human"
+          break
+        end
       end
     end
 
