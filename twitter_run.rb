@@ -36,7 +36,10 @@ while true
       break
     end
     # sleep random amount
+    my_game.present_board
+    puts "waiting for Levin to choose"
     sleep (rand(2..5)*60)
+
     chosen_slot = levin.choose_slot
     levin_move = my_game.move(2, chosen_slot)
     while levin_move == false
@@ -52,6 +55,8 @@ while true
     end
 
     # sleep random amount
+    my_game.present_board
+    puts "waiting for Kitty to choose"
     sleep (rand(10..15)*60)
   end
 end
