@@ -64,6 +64,10 @@ class Game
     board_as_columns
   end
 
+  def board_full?
+    @board[-1].none? { |space| space == 0 }
+  end
+
   def check_for_winner
     this_surface = Surface.new(@last_row_number, @last_column_number, @board)
     result = this_surface.check_for_consec(4)

@@ -94,6 +94,9 @@ class Robot
     if slot_choice
       return slot_choice
     else
+      if elevations == [6, 6, 6, 6, 6, 6, 6]
+        puts "board is full!"
+      end
       puts "just going to choose randomly"
       valid_random_move = false
       while valid_random_move == false
