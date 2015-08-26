@@ -35,6 +35,10 @@ while true
       puts "Kitty wins"
       break
     end
+    if my_game.board_full?
+      puts "board full is true"
+      break
+    end
     # sleep random amount
     my_game.present_board
     puts "waiting for Levin to choose"
@@ -54,6 +58,10 @@ while true
       break
     end
 
+    if my_game.board_full?
+      puts "board full is true"
+      break
+    end
     # sleep random amount
     my_game.present_board
     puts "waiting for Kitty to choose"
