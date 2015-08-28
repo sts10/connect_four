@@ -67,4 +67,6 @@ while true
     puts "waiting for Kitty to choose"
     sleep (rand(10..15)*60)
   end
+  # Sleep between games, partially in attempt to avoid Twitter API errors
+  sleep (rand(20..30)*60)
 end
