@@ -1,47 +1,14 @@
 
 class Robot
   attr_accessor :name, :opponent
-  def initialize(name, number_to_use, rest_client, opponent)
+  def initialize(name, number_to_use, rest_client)
     @name = name
     @rest_client = rest_client
-    @opponent = opponent
     @number_to_use = number_to_use
     if @number_to_use == 1
       @opponent_number = 2
     else 
       @opponent_number = 1
-    end
-  end
-
-  def listen_for_board
-    TWITTER_STREAMING.user do |object|
-      case object
-      when Twitter::Tweet
-        puts "It's a tweet from #{object.user.screen_name} that says: " + object.text
-
-        if object.text.include?("@#{@name}") && self.is_string_board?(object.text)
-          puts "found a board tweet at me!"
-          return object
-        end
-      when Twitter::Streaming::Event
-        puts "It's a Streaming::Event! Not really sure what this means!"
-      when Twitter::Streaming::StallWarning
-        puts "Falling behind!"
-      end
-    end
-  end
-
-  def is_string_board?(string)
-    count = 0
-    string.each_char do |character|
-      if character == "|"
-        count = count + 1
-      end
-    end
-    if count == 12
-      return true
-    else
-      return false
     end
   end
 

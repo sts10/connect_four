@@ -14,7 +14,7 @@ puts "Welcome to Connect Four!"
 #puts "enter number to use"
 #robot_number = gets.chomp
 
-levin = Robot.new("schlinkbot", 2, LEVIN_REST, "sts10")
+levin = Robot.new("schlinkbot", 2, LEVIN_REST)
 
 
 TWITTER_STREAMING.user do |object|
