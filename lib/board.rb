@@ -79,6 +79,24 @@ class Board
     return result
   end
 
+  def make_elevations
+    # 1. Make a 7-long array of each's column current row number
+    elevations = [0,0,0,0,0,0,0]
+        
+    self.board_as_columns.each_with_index do |column, column_number|
+      column_full = true
+      column.each_with_index do |space, row_number|
+        if space == 0 
+          elevations[column_number] = row_number
+          column_full = false
+          break
+        end
+        elevations[column_number] = 6 if column_full 
+      end
+    end
+    puts "elevations array is #{elevations}"
+    elevations
+  end
 end
 
 

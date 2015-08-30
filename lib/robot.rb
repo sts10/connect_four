@@ -1,12 +1,9 @@
 
-
 class Robot
-  def initialize(name, number_to_use, rest_client, opponent, game)
+  def initialize(name, number_to_use, rest_client, opponent)
     @name = name
     @rest_client = rest_client
     @opponent = opponent
-    @game = game
-    @board = game.board
     @number_to_use = number_to_use
     if @number_to_use == 1
       @opponent_number = 2
@@ -21,7 +18,8 @@ class Robot
       when Twitter::Tweet
         puts "It's a tweet from #{object.user.screen_name} that says: " + object.text
 
-        if object.text.include?("@#{@name}") && self.string_is_board?(object.text.downcase)
+        if object.text.include?("@#{@name}") && self.is_string_board?(object.text)
+          puts "found a board tweet at me!"
           return object
         end
       when Twitter::Streaming::Event
@@ -46,30 +44,11 @@ class Robot
     end
   end
 
-  def make_elevations
- # 1. Make a 7-long array of each's column current row number
-    elevations = [0,0,0,0,0,0,0]
-        
-    @game.board_as_columns.each_with_index do |column, column_number|
-      column_full = true
-      column.each_with_index do |space, row_number|
-        if space == 0 
-          elevations[column_number] = row_number
-          column_full = false
-          break
-        end
-        elevations[column_number] = 6 if column_full 
-      end
-    end
-    puts "elevations array is #{elevations}"
-    elevations
-  end
-
-  def choose_slot
+  def choose_slot(board)
     # to be smarter about choosing a slot:
     slot_choice = false
 
-    elevations = self.make_elevations
+    elevations = board.make_elevations
 
     # 2. Add one to each of those row numbers to get possible moves
     # scan all possible moves for this_surface.check_for_consec(3) == 2
@@ -79,7 +58,7 @@ class Robot
       if row_number == 6 # is this supposed to be row_unmber == 6 ? (used to be `if column_number == 6`
         next
       end
-      this_surface = Surface.new(row_number, column_number, @board)
+      this_surface = Surface.new(row_number, column_number, board)
       if this_surface.check_for_consec(4, @number_to_use) == @number_to_use
         slot_choice = column_number
         puts "non randomly assigned slot choice cuz I know where I can win"
@@ -93,7 +72,7 @@ class Robot
         if row_number == 6 # is this supposed to be row_unmber == 6 ? (used to be `if column_number == 6`
           next
         end
-        this_surface = Surface.new(row_number, column_number, @board)
+        this_surface = Surface.new(row_number, column_number, board)
         if this_surface.check_for_consec(4, @opponent_number) == @opponent_number
           slot_choice = column_number
           puts "non randomly assigned slot choice cuz I know where I need to block the human"
@@ -130,12 +109,12 @@ class Robot
     end
   end
 
-  def tweet_board(game, id_to_reply_to)
+  def tweet_board(board, id_to_reply_to)
     text_to_tweet = "@#{@opponent}\n\n"
     i = 5
     6.times do 
       text_to_tweet = text_to_tweet + "|"
-      @board[i].each do |space|
+      board[i].each do |space|
         if space == 0
           text_to_tweet = text_to_tweet + Rumoji.decode(":white_circle:")
         elsif space == 1
