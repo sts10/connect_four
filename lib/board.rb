@@ -74,7 +74,8 @@ class Board
   end
 
   def check_for_winner
-    this_surface = Surface.new(@last_row_number, @last_column_number, @board_array)
+    # honestly not sure if you can pass self like this?
+    this_surface = Surface.new(@last_row_number, @last_column_number, self)
     result = this_surface.check_for_consec(4)
     return result
   end
