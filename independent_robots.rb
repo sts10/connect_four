@@ -25,6 +25,7 @@ TWITTER_STREAMING.user do |object|
 
     if object.text.include?("@#{levin.name}") && Board.string_is_board?(object.text)
       puts "found a board tweet at me! The board is contained in #{object.id}"
+      levin.opponent = object.user.screen_name
       board = Board.new(object)
       levin_choice = levin.choose_slot(board)
       board.move(2, levin_choice)

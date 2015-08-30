@@ -1,6 +1,6 @@
 
 class Robot
-  attr_accessor :name
+  attr_accessor :name, :opponent
   def initialize(name, number_to_use, rest_client, opponent)
     @name = name
     @rest_client = rest_client
@@ -111,7 +111,7 @@ class Robot
   end
 
   def tweet_board(board, id_to_reply_to)
-    text_to_tweet = "@#{@opponent}\n\n"
+    text_to_tweet = "@#{@opponent}\n\n" # need to assign opponent not in initialization, but upon 
     i = 5
     6.times do 
       text_to_tweet = text_to_tweet + "|"
