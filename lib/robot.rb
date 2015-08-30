@@ -114,7 +114,7 @@ class Robot
     i = 5
     6.times do 
       text_to_tweet = text_to_tweet + "|"
-      board[i].each do |space|
+      board.board_array[i].each do |space|
         if space == 0
           text_to_tweet = text_to_tweet + Rumoji.decode(":white_circle:")
         elsif space == 1
