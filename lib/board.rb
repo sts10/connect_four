@@ -7,6 +7,20 @@ class Board
     @last_column_number = false
   end
 
+  def self.string_is_board?(string)
+    count = 0
+    string.each_char do |character|
+      if character == "|"
+        count = count + 1
+      end
+    end
+    if count == 12
+      return true
+    else
+      return false
+    end
+  end
+
   def make_flat_array_from_tweet(tweet)
     white = Rumoji.decode(":white_circle:")
     red   = Rumoji.decode(":red_circle:") 

@@ -25,12 +25,12 @@ class Surface
       rescue
         binding.pry
       end
-      puts "@board is #{@board}"
-      puts "board_tc, after putting in the mark, is #{board_tc}"
+      #puts "@board is #{@board}"
+      #puts "board_tc, after putting in the mark, is #{board_tc}"
     end
 
     num_to_check = num_consec - 1
-    puts "checking the surface #{self.to_s} for #{num_consec} consecutive pieces..."
+    #puts "checking the surface #{self.to_s} for #{num_consec} consecutive pieces..."
     # check horizonal
     horizontal_array_to_check = []
     7.times do |i|
@@ -38,7 +38,7 @@ class Surface
         horizontal_array_to_check << board_tc[@row_number][@column_number+num_to_check-i] 
       end
     end
-    puts "here's the horizontal array to check: #{horizontal_array_to_check}"
+    #puts "here's the horizontal array to check: #{horizontal_array_to_check}"
 
     vertical_array_to_check = []
     7.times do |i|
@@ -65,7 +65,7 @@ class Surface
     all_possible_winners_from_this_move = [] 
     all_possible_winners_from_this_move = [horizontal_array_to_check, vertical_array_to_check,top_left_to_bottom_right_array_to_check, top_right_to_bottom_left_array_to_check]
 
-    puts "all possible: #{all_possible_winners_from_this_move}"
+    #puts "all possible: #{all_possible_winners_from_this_move}"
 
     result = check_array_of_arrays_for_winner(all_possible_winners_from_this_move, num_consec)
     #binding.pry
@@ -103,7 +103,7 @@ class Surface
         consec_ones = 0
       end
       if consec_ones == num_consec && consec_twos == num_consec
-        puts "both players have #{num_consec} pieces consecutively at #{self.to_s}"
+        #puts "both players have #{num_consec} pieces consecutively at #{self.to_s}"
         return 3
       end
 

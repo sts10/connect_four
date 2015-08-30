@@ -1,5 +1,6 @@
 
 class Robot
+  attr_accessor :name
   def initialize(name, number_to_use, rest_client, opponent)
     @name = name
     @rest_client = rest_client
