@@ -27,8 +27,11 @@ while true
   #Check for winners, check for full board
   levin_choice = levin.choose_slot(board)
   board.move(2, levin_choice)
-  #sleep rand?
+
+  sleep rand(5..12)
+
   levin.tweet_board(board, tweeted_board.id)
+
   #check for winner or full board?
   winner = board.check_for_winner
   if winner
@@ -38,5 +41,4 @@ while true
     puts "board is full"
     break
   end
-
 end
