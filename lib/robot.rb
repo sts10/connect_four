@@ -22,16 +22,28 @@ class Robot
       when Twitter::Tweet
         puts "It's a tweet from #{object.user.screen_name} that says: " + object.text
 
-        if object.text.include?("@#{@name}") && object.text.downcase.include?("play?")
-          text_to_tweet = "@#{object.user.screen_name} hi! Yes, working on that..."
-
-          @rest_client.update(text_to_tweet, in_reply_to_status_id: object.id)
+        if object.text.include?("@#{@name}") && self.string_is_board?(object.text.downcase)
+          return object
         end
       when Twitter::Streaming::Event
         puts "It's a Streaming::Event! Not really sure what this means!"
       when Twitter::Streaming::StallWarning
         puts "Falling behind!"
       end
+    end
+  end
+
+  def is_string_board?(string)
+    count = 0
+    string.each_char do |character|
+      if character == "|"
+        count = count + 1
+      end
+    end
+    if count == 12
+      return true
+    else
+      return false
     end
   end
 
