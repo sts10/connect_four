@@ -13,7 +13,7 @@ robot_name = gets.chomp
 puts "enter number to use"
 robot_number = gets.chomp
 
-kitty = Robot.new("kitty_1878", 1, KITTY_REST, "schlinkbot", my_game)
+kitty = Robot.new("kitty_1878", 1, KITTY_REST, "sts10", my_game)
 
 
 while true

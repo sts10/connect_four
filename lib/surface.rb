@@ -14,6 +14,7 @@ class Surface
     board_tc = [ 
       [],[],[],[],[],[]
     ]
+    # should be something like board_tc = Board.new(board).make_copy_of_board
     @board.each_with_index do |row, row_number|
       board_tc[row_number] = row.dup
     end

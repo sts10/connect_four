@@ -15,7 +15,6 @@ class Robot
     end
   end
 
-
   def listen_for_board
     TWITTER_STREAMING.user do |object|
       case object
