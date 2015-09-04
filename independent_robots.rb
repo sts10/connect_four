@@ -71,6 +71,7 @@ stream_object.user do |object|
 end
 
 
+# Pretty sure this is never used. I made this method a class method in the Board model
 def is_string_board?(string)
   count = 0
   string.each_char do |character|
