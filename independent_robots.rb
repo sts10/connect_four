@@ -49,7 +49,8 @@ stream_object.user do |object|
       this_robot.opponent = object.user.screen_name
       board = Board.new(object)
       choice = this_robot.choose_slot(board)
-      board.move(2, choice)
+
+      board.move(robot_number, choice)
 
       sleep rand(5..12)
       this_robot.tweet_board(board, object.id)
