@@ -33,7 +33,9 @@ puts "Cool, this bot's name is #{this_robot.name} and I set it to use #{robot_nu
 puts "should this bot go first? If yes, enter opponent handle, if no enter n"
 first = gets.chomp
 if first.downcase != "n"
-  this_robot.tweet("@#{first} Want to play?\n\n#{Board.make_empty_board}")
+  puts "cool, about to tweet at @#{first}"
+  greeting = ["Want to play?", "sup", "oh hey", "You go first", "you first", "I got this"].sample
+  this_robot.tweet("@#{first} #{greeting}\n\n#{Board.make_empty_board}")
 end
 
 stream_object.user do |object|
