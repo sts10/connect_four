@@ -52,7 +52,7 @@ stream_object.user do |object|
 
       board.move(robot_number, choice)
 
-      sleep rand(5..12)
+      sleep rand((5..12)*60)
       this_robot.tweet_board(board, object.id)
 
       #check for winner or full board?
