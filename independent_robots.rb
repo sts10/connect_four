@@ -58,7 +58,7 @@ stream_object.user do |object|
       #check for winner or full board?
       winner = board.check_for_winner
       if winner
-        puts "#{this_robot.robot_name} wins"
+        puts "#{this_robot.name} wins"
       elsif board.board_full?
         puts "board is full"
       end
