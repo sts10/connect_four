@@ -21,6 +21,20 @@ class Board
     end
   end
 
+  def self.make_empty_board
+    white = Rumoji.decode(":white_circle:")
+
+    empty_board = ""
+    6.times do |row_number|
+      empty_board = empty_board + "|" 
+        7.times do |space| 
+          empty_board = empty_board + white  
+        end
+      empty_board = empty_board + "|\n"
+    end
+    empty_board
+  end
+
   def make_flat_array_from_tweet(tweet)
     white = Rumoji.decode(":white_circle:")
     red   = Rumoji.decode(":red_circle:") 

@@ -9,34 +9,53 @@ require_relative 'secrets.rb'
 
 puts "Welcome to Connect Four!" 
 
-#puts "enter name of this robot"
-#robot_name = gets.chomp
-#puts "enter number to use"
-#robot_number = gets.chomp
+puts "enter Twitter handle of this robot"
+robot_name = gets.chomp
+if robot_name[0] == "@"
+  robot_name = robot_name[1..-1]
+end
 
-levin = Robot.new("schlinkbot", 2, LEVIN_REST)
+if robot_name == "schlinkbot"
+  rest_object = LEVIN_REST
+  stream_object = LEVIN_STREAMING
+  robot_number = 2
+elsif robot_name == "kitty_1878"
+  rest_object = KITTY_REST
+  stream_object = KITTY_STREAMING
+  robot_number = 1
+end
 
+#levin = Robot.new("schlinkbot", 2, LEVIN_REST)
+this_robot = Robot.new(robot_name, robot_number, rest_object)
 
-TWITTER_STREAMING.user do |object|
+puts "Cool, this bot's name is #{this_robot.name} and I set it to use #{robot_number}"
+
+puts "should this bot go first? If yes, enter opponent handle, if no enter n"
+first = gets.chomp
+if first.downcase != "n"
+  this_robot.tweet("@#{first} Want to play?\n\n#{Board.make_empty_board}")
+end
+
+stream_object.user do |object|
   case object
   when Twitter::Tweet
     puts "It's a tweet from #{object.user.screen_name} that says: " + object.text
     #binding.pry
 
-    if object.text.include?("@#{levin.name}") && Board.string_is_board?(object.text)
+    if object.text.include?("@#{this_robot.name}") && Board.string_is_board?(object.text)
       puts "found a board tweet at me! The board is contained in #{object.id}"
-      levin.opponent = object.user.screen_name
+      this_robot.opponent = object.user.screen_name
       board = Board.new(object)
-      levin_choice = levin.choose_slot(board)
-      board.move(2, levin_choice)
+      choice = this_robot.choose_slot(board)
+      board.move(2, choice)
 
       sleep rand(5..12)
-      levin.tweet_board(board, object.id)
+      this_robot.tweet_board(board, object.id)
 
       #check for winner or full board?
       winner = board.check_for_winner
       if winner
-        puts "Levin wins"
+        puts "#{this_robot.robot_name} wins"
       elsif board.board_full?
         puts "board is full"
       end
@@ -62,3 +81,4 @@ def is_string_board?(string)
     return false
   end
 end
+
